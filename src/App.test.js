@@ -1,9 +1,8 @@
 /* eslint-disable no-undef */
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-
-import App from "./App.js";
+import {shallow} from 'enzyme';
+import Hooks from "./Hooks.js";
 
 let container = null;
 beforeEach(() => {
@@ -19,9 +18,14 @@ afterEach(() => {
   container = null;
 });
 
-it("renders with or without a name", () => {
-  act(() => {
-    render(<App />, container);
-  });
-  expect(container.textContent).toBe("First React Application");
+describe('First React component test with Enzyme', () => {
+  it('renders without crashing', () => {
+     shallow(<Hooks />);
+   });
+
+   it("renders with count", () => {
+    render(<Hooks />, container);
+  expect(container.textContent).toBe(" 10");
+});
+
 });
